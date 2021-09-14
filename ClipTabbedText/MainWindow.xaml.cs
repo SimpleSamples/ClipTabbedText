@@ -21,8 +21,7 @@ namespace ClipTabbedText
     /// </summary>
     public partial class MainWindow : Window
     {
-        const string ConnectionString = 
-            @"Data Source=G:\Sam\Documents\Source\Repos\ClipTabbedText\ClipText.db";
+        const string ConnectionStringTemplate = @"Data Source={path}ClipText.db";
 
         public MainWindow()
         {
@@ -32,7 +31,9 @@ namespace ClipTabbedText
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             List<ClipText> ctl = new List<ClipText>();
-            using (var connection = new SqliteConnection(ConnectionString))
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + '\\';
+            string cs = $"Data Source={path}ClipText.db";
+            using (SqliteConnection connection = new SqliteConnection(cs))
             {
                 connection.Open();
                 var command = connection.CreateCommand();
