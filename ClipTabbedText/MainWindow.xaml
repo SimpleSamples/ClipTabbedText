@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClipTabbedText"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Clip Tabbed Text" Height="450" Width="800" Loaded="Window_Loaded">
+    <DockPanel>
+        <Menu Height="25" DockPanel.Dock="Top">
+            <MenuItem x:Name="MenuItemClip" Header="Clip" Click="MenuItemClip_Click"/>
+            <MenuItem x:Name="MenuItemExit" Header="Exit" Click="MenuItemExit_Click"/>
+        </Menu>
+        <StatusBar Height="25" Margin="2,2,0,0" Name="statusBar1" DockPanel.Dock="Bottom">
+            <StatusBarItem x:Name="Message">Status Bar</StatusBarItem>
+        </StatusBar>
+        <Grid>
+            <DataGrid x:Name="TextGrid" Margin="0" ItemsSource="{Binding}" />
+        </Grid>
+    </DockPanel>
 </Window>
